@@ -1,0 +1,393 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: Event.bt
+//   Authors: WarpZephyr
+//   Version: 1.0.0
+//   Purpose: Chromehounds MSB Events.
+//  Category: Maps
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+enum <short> EventType
+{
+    EventTypeDraw = 0,
+    EventTypeGlobalSettings = 1,
+    EventTypeShadow = 3,
+    EventTypeObject = 5,
+    EventTypeSfx = 6,
+    EventTypeSpotlight = 7
+};
+
+// EventType Sub Structs
+//------------------------------------------------
+
+typedef struct
+{
+    short unk00;
+    short unk02;
+    short unk04;
+    short unk06;
+    int unk08 <hidden=true>; Assert(unk08 == 0);
+    int unk0C;
+    int unk10 <hidden=true>; Assert(unk10 == 0);
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+} EventDraw30;
+
+typedef struct
+{
+    float unk00;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    float unk20;
+    float unk24;
+    float unk28;
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int unk30 <hidden=true>; Assert(unk30 == 0);
+    int unk34 <hidden=true>; Assert(unk34 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+} EventDraw34;
+
+typedef struct
+{
+    short unk00;
+    short unk02;
+    short unk04;
+    short unk06;
+    ubyte unk08;
+    ubyte unk09 <hidden=true>; Assert(unk09 == 0);
+    ubyte unk0A <hidden=true>; Assert(unk0A == 0);
+    ubyte unk0B <hidden=true>; Assert(unk0B == 0);
+    int unk0C <hidden=true>; Assert(unk0C == 0);
+    int unk10 <hidden=true>; Assert(unk10 == 0);
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+} EventDraw38;
+
+// EventType Structs
+//------------------------------------------------
+
+typedef struct
+{
+    local quad start <hidden=true> = FTell();
+    
+    // Read Data
+    int unk00;
+    short unk04;
+    short unk06;
+    short unk08;
+    short unk0A;
+    short unk0C;
+    short unk0E;
+    short unk10;
+    short unk12;
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    int unk20 <hidden=true>; Assert(unk20 == 0);
+    int unk24 <hidden=true>; Assert(unk24 == 0);
+    int unk28 <hidden=true>; Assert(unk28 == 0);
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int offset30; Assert(offset30 == 128);
+    int offset34; Assert(offset34 == 160);
+    int offset38; Assert(offset38 == 224);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+    int unk40 <hidden=true>; Assert(unk40 == 0);
+    int unk44 <hidden=true>; Assert(unk44 == 0);
+    int unk48 <hidden=true>; Assert(unk48 == 0);
+    int unk4C <hidden=true>; Assert(unk4C == 0);
+    int unk50 <hidden=true>; Assert(unk50 == 0);
+    int unk54 <hidden=true>; Assert(unk54 == 0);
+    int unk58 <hidden=true>; Assert(unk58 == 0);
+    int unk5C <hidden=true>; Assert(unk5C == 0);
+    int unk60 <hidden=true>; Assert(unk60 == 0);
+    int unk64 <hidden=true>; Assert(unk64 == 0);
+    int unk68 <hidden=true>; Assert(unk68 == 0);
+    int unk6C <hidden=true>; Assert(unk6C == 0);
+    int unk70 <hidden=true>; Assert(unk70 == 0);
+    int unk74 <hidden=true>; Assert(unk74 == 0);
+    int unk78 <hidden=true>; Assert(unk78 == 0);
+    int unk7C <hidden=true>; Assert(unk7C == 0);
+    
+    // Get Offset Structs
+    FSeek(start + offset30);
+    EventDraw30 draw30;
+    
+    FSeek(start + offset34);
+    EventDraw34 draw34;
+    
+    FSeek(start + offset38);
+    EventDraw38 draw38;
+} EventDraw;
+
+typedef struct
+{
+    ubyte unk00;
+    ubyte unk01;
+    ubyte unk02;
+    ubyte unk03;
+    short unk04;
+    short unk06;
+    short unk08;
+    short unk0A;
+    float unk0C;
+    float unk10;
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    int unk20 <hidden=true>; Assert(unk20 == 0);
+    int unk24 <hidden=true>; Assert(unk24 == 0);
+    int unk28 <hidden=true>; Assert(unk28 == 0);
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int unk30 <hidden=true>; Assert(unk30 == 0);
+    int unk34 <hidden=true>; Assert(unk34 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+} EventGlobalSettings;
+
+typedef struct
+{
+    ubyte unk00;
+    ubyte unk01;
+    short unk02 <hidden=true>; Assert(unk02 == 0);
+    int unk04 <hidden=true>; Assert(unk04 == 0);
+    int unk08 <hidden=true>; Assert(unk08 == 0);
+    int unk0C <hidden=true>; Assert(unk0C == 0);
+    int unk10 <hidden=true>; Assert(unk10 == 0);
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    int unk20 <hidden=true>; Assert(unk20 == 0);
+    int unk24;
+    int unk28 <hidden=true>; Assert(unk28 == 0);
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int unk30 <hidden=true>; Assert(unk30 == 0);
+    int unk34 <hidden=true>; Assert(unk34 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+    int unk40 <hidden=true>; Assert(unk40 == 0);
+    short unk44;
+    short unk46;
+    short unk48;
+    short unk4A;
+    short unk4C;
+    short unk4E;
+    float unk50;
+    float unk54;
+    float unk58;
+    float unk5C;
+    short unk60;
+    short unk62;
+    int unk64 <hidden=true>; Assert(unk64 == 0);
+    int unk68 <hidden=true>; Assert(unk68 == 0);
+    int unk6C <hidden=true>; Assert(unk6C == 0);
+} EventShadow;
+
+typedef struct
+{
+    int unk00;
+    int unk04;
+    int unk08;
+    short unk0C;
+    short unk0E <hidden=true>; Assert(unk0E == 0);
+    int unk10 <hidden=true>; Assert(unk10 == 0);
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    int unk20 <hidden=true>; Assert(unk20 == 0);
+    int unk24 <hidden=true>; Assert(unk24 == 0);
+    int unk28 <hidden=true>; Assert(unk28 == 0);
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int unk30 <hidden=true>; Assert(unk30 == 0);
+    int unk34 <hidden=true>; Assert(unk34 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+    int unk40 <hidden=true>; Assert(unk40 == 0);
+    int unk44 <hidden=true>; Assert(unk44 == 0);
+    int unk48 <hidden=true>; Assert(unk48 == 0);
+    int unk4C <hidden=true>; Assert(unk4C == 0);
+    int unk50 <hidden=true>; Assert(unk50 == 0);
+    int unk54 <hidden=true>; Assert(unk54 == 0);
+    int unk58 <hidden=true>; Assert(unk58 == 0);
+    int unk5C <hidden=true>; Assert(unk5C == 0);
+    int unk60 <hidden=true>; Assert(unk60 == 0);
+    int unk64 <hidden=true>; Assert(unk64 == 0);
+    int unk68 <hidden=true>; Assert(unk68 == 0);
+    int unk6C <hidden=true>; Assert(unk6C == 0);
+    int unk70 <hidden=true>; Assert(unk70 == 0);
+    int unk74 <hidden=true>; Assert(unk74 == 0);
+    int unk78 <hidden=true>; Assert(unk78 == 0);
+    int unk7C <hidden=true>; Assert(unk7C == 0);
+} EventObject;
+
+typedef struct
+{
+    short id;
+    short unk02 <hidden=true>; Assert(unk02 == 0);
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    float unk14;
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    int unk20 <hidden=true>; Assert(unk20 == 0);
+    int unk24 <hidden=true>; Assert(unk24 == 0);
+    int unk28 <hidden=true>; Assert(unk28 == 0);
+    int unk2C <hidden=true>; Assert(unk2C == 0);
+    int unk30 <hidden=true>; Assert(unk30 == 0);
+    int unk34 <hidden=true>; Assert(unk34 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+} EventSfx;
+
+typedef struct
+{
+    float unk00;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18;
+    int unk1C;
+    short unk20;
+    short unk22;
+    float unk24;
+    short unk28;
+    short unk2A;
+    short unk2C;
+    short unk2E;
+    short unk30;
+    short unk32;
+    short unk34;
+    short unk36 <hidden=true>; Assert(unk36 == 0);
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+} EventSpotlight;
+
+// Main Struct
+//------------------------------------------------
+
+typedef struct
+{
+    local quad start <hidden=true> = FTell();
+    
+    // Read Data
+    int nameOffset; Assert(nameOffset > 0);
+    EventType type;
+    short id;
+    short layerID;
+    short unk0A;
+    int unk0C <hidden=true>; Assert(unk0C == 0);
+    int unk10 <hidden=true>; Assert(unk10 == 0);
+    int unk14 <hidden=true>; Assert(unk14 == 0);
+    int unk18 <hidden=true>; Assert(unk18 == 0);
+    int offsetDraw;
+    int offsetShadow;
+    int unk24 <hidden=true>; Assert(unk24 == 0);
+    int offsetObject;
+    int offsetGlobalSettings;
+    int offsetSfx;
+    int offsetSpotlight;
+    int unk38 <hidden=true>; Assert(unk38 == 0);
+    int unk3C <hidden=true>; Assert(unk3C == 0);
+    
+    // Get Offset Structs
+    FSeek(start + nameOffset);
+    string name;
+    
+    switch (type)
+    {
+        case EventTypeDraw:
+            Assert(offsetDraw > 0);
+            Assert(offsetGlobalSettings == 0);
+            Assert(offsetShadow == 0);
+            Assert(offsetObject == 0);
+            Assert(offsetSfx == 0);
+            Assert(offsetSpotlight == 0);
+            FSeek(start + offsetDraw);
+            EventDraw draw;
+            break;
+        case EventTypeGlobalSettings:
+            Assert(offsetDraw == 0);
+            Assert(offsetGlobalSettings > 0);
+            Assert(offsetShadow == 0);
+            Assert(offsetObject == 0);
+            Assert(offsetSfx == 0);
+            Assert(offsetSpotlight == 0);
+            FSeek(start + offsetGlobalSettings);
+            EventGlobalSettings globalSettings;
+            break;
+        case EventTypeShadow:
+            Assert(offsetDraw == 0);
+            Assert(offsetGlobalSettings == 0);
+            Assert(offsetShadow > 0);
+            Assert(offsetObject == 0);
+            Assert(offsetSfx == 0);
+            Assert(offsetSpotlight == 0);
+            FSeek(start + offsetShadow);
+            EventShadow shadow;
+            break;
+        case EventTypeObject:
+            Assert(offsetDraw == 0);
+            Assert(offsetGlobalSettings == 0);
+            Assert(offsetShadow == 0);
+            Assert(offsetObject > 0);
+            Assert(offsetSfx == 0);
+            Assert(offsetSpotlight == 0);
+            FSeek(start + offsetObject);
+            EventObject object;
+            break;
+        case EventTypeSfx:
+            Assert(offsetDraw == 0);
+            Assert(offsetGlobalSettings == 0);
+            Assert(offsetShadow == 0);
+            Assert(offsetObject == 0);
+            Assert(offsetSfx > 0);
+            Assert(offsetSpotlight == 0);
+            FSeek(start + offsetSfx);
+            EventSfx sfx;
+            break;
+        case EventTypeSpotlight:
+            Assert(offsetDraw == 0);
+            Assert(offsetGlobalSettings == 0);
+            Assert(offsetShadow == 0);
+            Assert(offsetObject == 0);
+            Assert(offsetSfx == 0);
+            Assert(offsetSpotlight > 0);
+            FSeek(start + offsetSpotlight);
+            EventSpotlight spotlight;
+            break;
+        default: Assert(false, Str("Unknown event type: %d", type));
+    }
+} Event <read=ReadEvent>;
+
+string ReadEvent(Event& event)
+{
+    local string type <hidden=true>;
+    
+    switch (event.type)
+    {
+        case EventTypeDraw: type = "Draw"; break;
+        case EventTypeGlobalSettings: type = "GlobalSettings"; break;
+        case EventTypeShadow: type = "Shadow"; break;
+        case EventTypeObject: type = "Object"; break;
+        case EventTypeSfx: type = "Sfx"; break;
+        case EventTypeSpotlight: type = "Spotlight"; break;
+        default: type = "UnknownType";
+    }
+
+    return Str("ID: %d | %s | %s", event.id, type, event.name);
+}

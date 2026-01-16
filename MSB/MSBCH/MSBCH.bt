@@ -1,0 +1,156 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: MSBCH.bt
+//   Authors: WarpZephyr
+//   Version: 1.0.0
+//   Purpose: Chromehounds map layouts.
+//  Category: Maps
+// File Mask: *.msb
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+// Versions Present:
+// 102
+// 200
+
+#include "..\..\Util.bt"
+#include "..\MSB.bt"
+#include "Model.bt"
+#include "Event.bt"
+#include "Point.bt"
+#include "Layer.bt"
+#include "Part.bt"
+#include "Tree.bt"
+
+BigEndian();
+local int VARINT_LONG <hidden=true> = 0;
+local int i <hidden=true>;
+
+//------------------------------------------------
+
+typedef struct
+{
+    Param param(-1, "MODEL_PARAM_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        Model model;
+    }
+    FSeek(param.nextParamOffset.val);
+} ModelParam <read=ReadModelParam, bgcolor=cLtGreen>;
+
+string ReadModelParam(ModelParam& modelParam)
+{
+    return ReadParam(modelParam.param);
+}
+
+typedef struct
+{
+    Param param(-1, "EVENT_PARAM_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        Event event;
+    }
+    FSeek(param.nextParamOffset.val);
+} EventParam <read=ReadEventParam, bgcolor=cYellow>;
+
+string ReadEventParam(EventParam& eventParam)
+{
+    return ReadParam(eventParam.param);
+}
+
+typedef struct
+{
+    Param param(-1, "POINT_PARAM_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        Point point;
+    }
+    FSeek(param.nextParamOffset.val);
+} PointParam <read=ReadPointParam, bgcolor=cAqua>;
+
+string ReadPointParam(PointParam& pointParam)
+{
+    return ReadParam(pointParam.param);
+}
+
+typedef struct
+{
+    Param param(-1, "LAYER_PARAM_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        Layer layer;
+    }
+    FSeek(param.nextParamOffset.val);
+} LayerParam <read=ReadLayerParam, bgcolor=cLtAqua>;
+
+string ReadLayerParam(LayerParam& layerParam)
+{
+    return ReadParam(layerParam.param);
+}
+
+typedef struct
+{
+    Param param(-1, "PARTS_PARAM_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        Part part;
+    }
+} PartsParam <read=ReadPartsParam, bgcolor=cBlue>;
+
+string ReadPartsParam(PartsParam& partsParam)
+{
+    return ReadParam(partsParam.param);
+}
+
+typedef struct
+{
+    Param param(-1, "MAPSTUDIO_TREE_ST", 0);
+    for (i = 0; i < param.count - 1; i++)
+    {
+        FSeek(param.offsets[i].val);
+        TreeNode node;
+    }
+} MapStudioTree <read=ReadMapStudioTree, bgcolor=cLtBlue>;
+
+string ReadMapStudioTree(MapStudioTree& mapstudioTree)
+{
+    return ReadParam(mapstudioTree.param);
+}
+
+//------------------------------------------------
+
+ModelParam models;
+EventParam events;
+PointParam points;
+
+if (points.param.version == 200)
+{
+    LayerParam layers;
+}
+
+PartsParam parts;
+if (parts.param.version == 200)
+{
+    MapStudioTree tree;    
+}
+else if (parts.param.version == 102)
+{
+    MapStudioTree tree1;
+    MapStudioTree tree2;
+    MapStudioTree tree3;
+    MapStudioTree tree4;
+    MapStudioTree tree5;
+    MapStudioTree tree6;
+    MapStudioTree tree7;
+}
+else
+{
+    Assert(false, Str("Unknown MSB param version: %d", parts.param.version));    
+}

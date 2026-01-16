@@ -1,0 +1,34 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: Tree.bt
+//   Authors: WarpZephyr
+//   Version: 1.0.0
+//   Purpose: Chromehounds MSB Trees.
+//  Category: Maps
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+typedef struct
+{
+    Vector3 boundingBoxMin;
+    int leftChildOffset;
+    Vector3 boundingBoxMax;
+    int unk1C <hidden=true>; Assert(unk1C == 0);
+    Vector3 origin;
+    int rightChildOffset;
+    float radius;
+    int partCount;
+
+    if (partCount > 0)
+    {
+        short partIndices[partCount];
+    }
+} TreeNode <read=ReadTreeNode>;
+
+string ReadTreeNode(TreeNode& node)
+{
+    return Str("[%d] %7.2f", node.partCount, node.radius);
+}

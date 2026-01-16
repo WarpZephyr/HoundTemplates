@@ -1,0 +1,317 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: SET.bt
+//   Authors: WarpZephyr
+//   Version: 1.0.0
+//   Purpose: Chromehounds ".set" files.
+//  Category: Maps
+// File Mask: *.set
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+BigEndian();
+
+//------------------------------------------------
+
+typedef struct
+{
+    short unk00;
+    short unk02;
+    short unk04;
+    short unk06;
+    int unk08;
+    int unk0C;
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    int unk20;
+    int unk24;
+    int unk28;
+    int unk2C;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44;
+    int unk48;
+    int unk4C;
+    int unk50;
+    int unk54;
+    int unk58;
+    int unk5C;
+    int unk60;
+    int unk64;
+    int unk68;
+    int unk6C;
+    int unk70;
+    int unk74;
+    int unk78;
+    int unk7C;
+    
+    float unk84[47];
+    int unk13C;
+    int unk140;
+    int unk144;
+    int unk148;
+    int unk14C;
+    int unk150;
+    int unk154;
+    int unk158;
+    int unk15C;
+    int unk160;
+    int unk164;
+} Unk1 <bgcolor=cLtGreen>;
+
+typedef struct
+{
+    float unk00;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    int unk14;
+    ubyte unk18;
+    ubyte unk19;
+    ubyte unk1A;
+    ubyte unk1B;
+    int unk1C;
+    int unk20;
+    int unk24;
+} Unk2 <bgcolor=cGreen>;
+
+typedef struct(ubyte version)
+{
+    float unk00;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    short unk20;
+    short unk22;
+    float unk24;
+    float unk28;
+    float unk2C;
+    
+    if (version == 10)
+    {
+        float unk30;
+        float unk34;
+        float unk38;
+        float unk3C;
+        float unk40;
+        float unk44;
+        float unk48;
+        float unk4C;
+    }
+} Unk3 <bgcolor=cDkGreen, optimize=false>;
+
+typedef struct
+{
+    float unk00;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    float unk20;
+    float unk24;
+    float unk28;
+    float unk2C;
+    ubyte unk30;
+    ubyte unk31;
+    ubyte unk32;
+    ubyte unk33;
+    float unk34;
+    float unk38;
+    float unk3C;
+    float unk40;
+    int unk44;
+    float unk48;
+    float unk4C;
+    float unk50;
+    float unk54;
+    float unk58;
+    float unk5C;
+    float unk60;
+    float unk64;
+    int unk68;
+    float unk6C;
+    float unk70;
+    float unk74;
+    float unk78;
+    float unk7C;
+    float unk80;
+    float unk84;
+    float unk88;
+    float unk8C;
+    float unk90;
+    float unk94;
+    float unk98;
+    float unk9C;
+    float unkA0;
+    float unkA4;
+    float unkA8;
+    float unkAC;
+} Unk4 <bgcolor=cLtYellow>;
+
+typedef struct
+{
+    ubyte unk00;
+    ubyte unk01;
+    ubyte unk02;
+    ubyte unk03;
+    int unk04;
+    int unk08;
+    int unk0C;
+    int unk10;
+    int unk14;
+    int unk18;
+    int unk1C;
+    float unk20;
+    float unk24;
+    int unk28;
+    float unk2C;
+    float unk30;
+    float unk34;
+    float unk38;
+    float unk3C;
+    float unk40;
+    float unk44;
+    float unk48;
+    float unk4C;
+    float unk50;
+    float unk54;
+    float unk58;
+    float unk5C;
+    float unk60;
+    float unk64;
+    float unk68;
+    float unk6C;
+    ubyte unk70;
+    ubyte unk71;
+    ubyte unk72;
+    ubyte unk73;
+    int unk74;
+    int unk78;
+    int unk7C;
+} Unk5 <bgcolor=cYellow>;
+
+typedef struct
+{
+    ubyte unk00;
+    ubyte unk01;
+    ubyte unk02;
+    ubyte unk03;
+    float unk04;
+    float unk08;
+    float unk0C;
+    float unk10;
+    float unk14;
+    float unk18;
+    float unk1C;
+    float unk20;
+    float unk24;
+    float unk28;
+    ubyte unk2C;
+    ubyte unk2D;
+    ubyte unk2E;
+    ubyte unk2F;
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+} Unk7 <bgcolor=cAqua>;
+
+typedef struct
+{
+    ubyte version; // Unsure about this
+    ubyte countUnk1s;
+    ubyte countUnk2s;
+    ubyte countUnk3s;
+    ubyte countUnk4s;
+    ubyte countUnk5s;
+    ubyte unk06; // countUnk6s?
+    ubyte countUnk7s; // Going out on a limb here, also this is 0 in "version" 9 despite there still being 8 entries
+    int unk08;
+    int unk0C;
+    ubyte unk10;
+    ubyte unk11;
+    ubyte unk12;
+    ubyte unk13;
+    int offsetUnk1s;
+    int offsetUnk2s;
+    int offsetUnk3s;
+    int offsetUnk4s;
+    int offsetUnk5s;
+    int unk28; Assert(unk28 == 0); // offsetUnk6s?
+    int offsetUnk7s;
+    
+    int unk30;
+    int unk34;
+    int unk38;
+    int unk3C;
+    int unk40;
+    int unk44;
+    int unk48;
+    int unk4C;
+    int unk50;
+    int unk54;
+    int unk58;
+    int unk5C;
+    int unk60;
+    
+    if (offsetUnk1s > 0 && countUnk1s > 0)
+    {
+        FSeek(offsetUnk1s);
+        Unk1 unk1s[countUnk1s];
+    }
+    
+    if (offsetUnk2s > 0 && countUnk2s > 0)
+    {
+        FSeek(offsetUnk2s);
+        Unk2 unk2s[countUnk2s];
+    }
+    
+    if (offsetUnk3s > 0 && countUnk3s > 0)
+    {
+        FSeek(offsetUnk3s);
+        Unk3 unk3s(version)[countUnk3s];
+    }
+    
+    if (offsetUnk4s > 0 && countUnk4s > 0)
+    {
+        FSeek(offsetUnk4s);
+        Unk4 unk4s[countUnk4s];
+    }
+    
+    if (offsetUnk5s > 0 && countUnk5s > 0)
+    {
+        FSeek(offsetUnk5s);
+        Unk5 unk5s[countUnk5s];
+    }
+    
+    if (offsetUnk7s > 0 && countUnk7s > 0)
+    {
+        FSeek(offsetUnk7s);
+        Unk7 unk7s[countUnk7s];
+    }
+    else if (version == 9 && offsetUnk7s > 0)
+    {
+        FSeek(offsetUnk7s);
+        Unk7 unk7s[8];
+    }
+} SET <bgcolor=cLtRed>;
+
+//------------------------------------------------
+
+SET set;
