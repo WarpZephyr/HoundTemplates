@@ -1,0 +1,156 @@
+//------------------------------------------------
+//--- 010 Editor v15.0.2 Binary Template
+//
+//      File: SMD4.bt
+//   Authors: WarpZephyr
+//   Version: 1.1.0
+//   Purpose: Assumed to be Armored Core 4thgen and 5thgen shadow meshes.
+//  Category: Dantelion
+// File Mask: *.smd
+//  ID Bytes: 53 4D 44 34
+//   History: https://github.com/JKAnderson/SoulsTemplates/blob/master/Other/SMD4.bt
+//------------------------------------------------
+
+#include "..\Util.bt"
+BigEndian();
+
+//------------------------------------------------
+
+typedef struct
+{
+    char magic[4]; Assert(magic == "SMD4");
+    int version <format=hex>; Assert(version == 0x40001);
+    int dataOffset <format=hex>;
+    int dataSize <format=hex>;
+    int count10;
+    int boneCount;
+    int meshCount;
+    int unk1C; // Vertex buffer count?
+    Vector3 boundingBoxMin;
+    Vector3 boundingBoxMax;
+    int faceCount; // Close but unsure
+    int indexCount; // Close but unsure
+    
+    local int i <hidden=true>;
+    for (i = 0; i < 8; i++)
+    {
+        int unk40 <hidden=true>; Assert(unk40 == 0);
+    }
+} Header <bgcolor=cLtRed>;
+
+typedef struct
+{
+    ubyte unk00;
+    ubyte unk01;
+    ubyte unk02;
+    ubyte unk03;
+    char name[32];
+} Unk10 <bgcolor=cLtGreen, read=ReadUnk10, optimize=false>;
+
+string ReadUnk10(Unk10& unk10)
+{
+    return unk10.name;
+}
+
+typedef struct
+{
+    char name[0x20];
+    Vector3 translation;
+    Vector3 rotation;
+    Vector3 scale;
+    Vector3 boundingBoxMin;
+    Vector3 boundingBoxMax;
+    short parentIndex;
+    short childIndex;
+    short nextSiblingIndex;
+    short previousSiblingIndex;
+    int unk64;
+    int unk68;
+    int unk6C;
+    int unk70[8];
+} Bone <bgcolor=cDkGreen, read=ReadBone, optimize=false>;
+
+string ReadBone(Bone& bone)
+{
+    return bone.name;
+}
+
+typedef struct (int vertexFormat)
+{
+    switch (vertexFormat)
+    {
+        case 0:
+            Vector3 position;
+            short boneIndex;
+            short unk0E <hidden=true>; Assert(unk0E == 0);
+            break;
+        case 1:
+            Vector3 position;
+            Vector2 uv;
+            short boneIndex; // Assumed from positioning and the existence of bones in a file using this vertex format
+            short unk16 <hidden=true>; Assert(unk16 == 0);
+            break;
+        case 2:
+            Vector3 position;
+            short boneIndices[4];
+            float boneWeights[4];
+            break;
+        default:
+            Assert(false);
+    }
+} Vertex <bgcolor=cDkYellow, optimize=false>;
+
+typedef struct
+{
+    ubyte vertexFormat;
+    ubyte unk01;
+    ubyte unk02; // Cull backfaces?
+    ubyte unk03;
+    ushort vertexIndexCount;
+    short unk06; // Default bone index?
+    short boneIndices[28];
+    int vertexIndicesLength;
+    int vertexIndicesOffset;
+    int vertexBufferLength;
+    int vertexBufferOffset;
+
+    local quad pos <hidden=true> = FTell();
+    FSeek(header.dataOffset + vertexIndicesOffset);
+    ushort vertexIndices[vertexIndexCount] <bgcolor=cYellow>;
+
+    FSeek(header.dataOffset + vertexBufferOffset);
+    local int vertexCount;
+    switch (vertexFormat)
+    {
+        case 0:
+            vertexCount = vertexBufferLength / 16;
+            break;
+        case 1:
+            vertexCount = vertexBufferLength / 24;
+            break;
+        case 2:
+            vertexCount = vertexBufferLength / 36;
+            break;
+        default:
+            Assert(false);
+    }
+    Vertex vertices(vertexFormat)[vertexCount];
+    FSeek(pos);
+} Mesh <bgcolor=cAqua, optimize=false>;
+
+typedef struct
+{
+    Header header;
+    if (header.count10 > 0)
+        Unk10 unk10[header.count10];
+
+    if (header.boneCount > 0)
+        Bone bones[header.boneCount];
+
+    if (header.meshCount > 0)
+        Mesh meshes[header.meshCount];
+} SMD4 <bgcolor=cLtRed>;
+
+//------------------------------------------------
+
+SMD4 smd4;
